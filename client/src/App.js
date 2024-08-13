@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Patients from './pages/Patients';
@@ -10,13 +10,13 @@ import Register from './components/Auth/Register';
 function App() {
   return (
     <Layout>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/patients" component={Patients} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/patients" element={<Patients />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </Layout>
   );
 }
