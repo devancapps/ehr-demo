@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# EHR Demo Server
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the backend server for the EHR (Electronic Health Record) Demo application. It provides API endpoints for user authentication and patient management.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+- Node.js (v14 or higher)
+- PostgreSQL
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/ehr-demo.git
+   cd ehr-demo/server
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-### `npm test`
+3. Create a `.env` file in the root of the server directory and add the following environment variables:
+   ```
+   PORT=5000
+   DB_USER=your_db_user
+   DB_HOST=localhost
+   DB_NAME=ehr_demo
+   DB_PASSWORD=your_db_password
+   DB_PORT=5432
+   JWT_SECRET=your_jwt_secret_key
+   NODE_ENV=development
+   ```
+   Replace the placeholders with your actual database credentials and choose a strong JWT secret.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Initialize the database:
+   ```
+   psql -U your_db_user -d your_db_name -f database/init.sql
+   ```
 
-### `npm run build`
+## Running the Server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To start the server in development mode:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm run dev
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To start the server in production mode:
 
-### `npm run eject`
+```
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The server will start on the port specified in your `.env` file (default is 5000).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Endpoints
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Authentication
+- POST `/api/auth/register` - Register a new user
+- POST `/api/auth/login` - Login and receive JWT token
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Patients
+- GET `/api/patients` - Get all patients
+- GET `/api/patients/:id` - Get a specific patient
+- POST `/api/patients` - Create a new patient
+- PUT `/api/patients/:id` - Update a patient
+- DELETE `/api/patients/:id` - Delete a patient
 
-## Learn More
+All patient routes require authentication.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Testing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To run tests:
 
-### Code Splitting
+```
+npm test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contributing
 
-### Analyzing the Bundle Size
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
