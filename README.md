@@ -22,7 +22,7 @@ This is the backend server for the EHR (Electronic Health Record) Demo applicati
 
 3. Create a `.env` file in the root of the server directory and add the following environment variables:
    ```
-   PORT=5000
+   PORT=4000
    DB_USER=your_db_user
    DB_HOST=localhost
    DB_NAME=ehr_demo
@@ -52,7 +52,7 @@ To start the server in production mode:
 npm start
 ```
 
-The server will start on the port specified in your `.env` file (default is 5000).
+The server will start on the port specified in your `.env` file (default is 4000).
 
 ## API Endpoints
 
